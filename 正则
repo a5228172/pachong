@@ -1,0 +1,8 @@
+ex = '<div class="thumb">.*?<img src="(.*?)" alt.*?</div>'
+img_src_list = re.findall(ex,page_text,re.S)
+re.sub( a , A , abcasd )  #找到a用A替换，后面见和group的配合使用
+AbcAsd
+“[…]” : 字符集合，匹配里面的任意一个元素
+“d” : 数字
+“D” : 非数字
+{m,n}” ：匹配字符串出现m到n次
