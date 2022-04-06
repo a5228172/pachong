@@ -1,3 +1,4 @@
+  from lxml import etree
   tree = etree.parse('test.html')
   # r = tree.xpath('/html/body/div')
     # r = tree.xpath('/html//div')
