@@ -8,8 +8,10 @@
     # r = tree.xpath('//li[7]//text()')
     # r = tree.xpath('//div[@class="tang"]//text()')
     r = tree.xpath('//div[@class="song"]/img/@src')
-    
-    
+#find_element_by_xpath("//input[@class=‘s_ipt’ and @name=‘wd’]")
+#find_element_by_xpath("//p[contains(text(),‘京公网’) and @id=‘jgwab’]") #指的是p标签下内容包含“京公网”且id属性为jgwab的元素  
+#//xxx丨//yyy多个路径查找
+#//span[text()='定制']
     <html lang="en">
 <head>
 	<meta charset="UTF-8" />
