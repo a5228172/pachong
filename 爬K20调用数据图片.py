@@ -8,7 +8,14 @@ from retrying import retry
 #http://fund.eastmoney.com/fundguzhi.html
 from shutil import copyfile
 from zichuan import duxiebiao
-
+def fiddle获取json数据():
+    c1 = zichuan.huoquzhantieshuju()
+    c =[]
+    for x in c1:
+        x = x.replace('Key: ','').replace(' Value: ','')
+        x = x.split(';')
+        c.append(f"'{x[0]}' :'{x[1]}'")
+    pyperclip.copy(',\n'.join(c))
 def main():	
 	st = pd.read_excel(r'E:\er\py\v20查数据\V20产品库\K20调用目录.xlsx')
 	# st = st.loc[st.dir4.apply(lambda a : 'D四列' in a)].loc[st.status.apply(lambda a : 1== a)][['modelno','pic','mirror_pic']]
