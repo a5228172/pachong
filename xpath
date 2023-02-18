@@ -1,4 +1,10 @@
   from lxml import etree
+  #文本xpath解析
+  parser = etree.XMLParser()
+  tree = etree.parse(r"C:\Users\11048125\Downloads\S48994570.xml",parser = parser) #查看解析出的tree的内容 
+  #输出xpath的信息通用
+  print(etree.tostring(r[0],encoding = 'utf-8').decode('utf-8'))
+  #
   tree = etree.parse('test.html')
   # r = tree.xpath('/html/body/div')
     # r = tree.xpath('/html//div')
