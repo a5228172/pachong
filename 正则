@@ -6,3 +6,70 @@ AbcAsd
 “d” : 数字
 “D” : 非数字
 {m,n}” ：匹配字符串出现m到n次
+import re
+ 
+'''
+findall:匹配所有符合规律的内容，返回包含结果的列表
+search:匹配并提取第一个符合规则的内容，返回一个正则表达式对象
+sub:替换符合规则的内容，返回替换后的值
+'''
+ 
+# (1).的使用
+a = 'asddfs123456'
+b1 = re.findall('s.', a)
+print(b1)  # ['sd', 's1']
+b2 = re.findall('s..', a)
+print(b2)  # ['sdd', 's12']
+ 
+# (2)*的使用
+a = 'asddfs123456'
+b = re.findall('s*', a)
+print(b)  # ['', 's', '', '', '', 's', '', '', '', '', '', '', '']
+ 
+# (3)?的使用
+a = 'xy123xefaf'
+b = re.findall('x?', a)
+print(b)  # ['x', '', '', '', '', 'x', '', '', '', '', '']
+ 
+# (4)#.*的使用
+s0 = 'fdhofdxxHELLOxx9897897gdsfdxxMYxxieigidjixxPYTHONxxefesfd'
+b = re.findall('xx.*xx', s0)  # 能找多长找多长
+print(b)  # ['xxHELLOxx9897897gdsfdxxMYxxieigidjixxPYTHONxx']
+c = re.findall('xx.*?xx', s0)  # 最短，切分
+print(c)  # ['xxHELLOxx', 'xxMYxx', 'xxPYTHONxx']
+ 
+# （5）使用括号与不使用括号的区别
+s1 = 'fdhofdxxHELLOxx9897897gdsfdxxMYxxieigidjixxPYTHONxxefesfd'
+d = re.findall('xx(.*?)xx', s1)
+print(d)  # ['HELLO', 'MY', 'PYTHON']
+for each in d:
+    print(each)
+ 
+# (6)re.S 的功能，包含换行符\n
+s = '''dfsfdsafdxxHELLO
+xxuuuuuuuuuxxPYTHONxxasdf'''
+a = re.findall('xx(.*?)xx', s)
+print(a)  # ['uuuuuuuuu'],不能包括换行匹配
+d = re.findall('xx(.*?)xx', s, re.S)
+print(d)  # ['HELLO\n', 'PYTHON']，包括了换行匹配
+ 
+# (7) findall与search的区别
+s2 = 'fdhofdxxHELLOxx123xxPYTHONxxieigidj'
+f1 = re.search('xx(.*?)xx123xx(.*?)xx', s2).group(1)
+print(f1)  # HELLO
+f2 = re.search('xx(.*?)xx123xx(.*?)xx', s2).group(2)
+print(f2)  # PYTHON
+f3 = re.search('xx(.*?)xx123xx(.*?)xx', s2)
+print(f3.group(1))  # HELLO
+print(f3.group(2))  # PYTHON
+ 
+f4 = re.findall('xx(.*?)xx123xx(.*?)xx', s2)
+print(f4)  # [('HELLO', 'PYTHON')]
+print(f4[0])  # ('HELLO', 'PYTHON')
+print(f4[0][0])  # HELLO
+print(f4[0][1])  # PYTHON
+ 
+# (8)sub的使用,先匹配再替换
+s3 = 'uuuuuu123abcssfasdfas123uuuuuu'
+g = re.sub('123(.*?)123', '  HELLO MY PYTHON!  ', s3)
+print(g)  # uuuuuu  HELLO MY PYTHON!  uuuuuu
